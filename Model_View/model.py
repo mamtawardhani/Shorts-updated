@@ -31,7 +31,7 @@ def Predict(img):
     invertedImg = np.clip(reSized - pixelProgression, 0, 255)
     
     maxPixel = np.max(reSized)
-    imgArray = np.asarray(invertedImg)
+    imgArray = np.asarray(invertedImg) / maxPixel
 
     sample = np.array(imgArray).reshape(1, 784)
     #stored it in a variable
