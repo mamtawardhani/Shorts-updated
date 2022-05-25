@@ -26,13 +26,15 @@ def Predict(img):
 
     pixelSize = 15
 
-    # maxPixel = np.max(reSized)
-
     pixelProgression = np.percentile(reSized, pixelSize)
-    invertedImg = np.clip(pixelProgression, 0, 255)
-
+    #changed the clip
+    invertedImg = np.clip(reSized - pixelProgression, 0, 255)
+    
+    maxPixel = np.max(reSized)
     imgArray = np.asarray(invertedImg)
 
     sample = np.array(imgArray).reshape(1, 784)
+    #stored it in a variable
+    sample_predict = model.predict(sample)
 
-    return model.predict(sample)
+    return sample_predict[0]
